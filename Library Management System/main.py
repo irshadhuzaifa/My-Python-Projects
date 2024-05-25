@@ -81,10 +81,14 @@ while True:
         issued = False
 
         for item in ViewBooks.books:
-            if issued_book == item[0] and item[-1] > 0:
-                item[-1] -= 1                      # If book exists and its quantity is greater tha zero, than book is issued and quantity is decreased by 1.
-                popup('Book issued successfully!')
-                issued = True
+            if issued_book == item[0]:
+                if item[-1] > 0:
+                    item[-1] -= 1                      # If book exists and its quantity is greater tha zero, than book is issued and quantity is decreased by 1.
+                    popup('Book issued successfully!')
+                    issued = True
+                else:
+                    popup(f"All {issued_book} books have been issued. Select another book.")    # Gives popup if selected book quantity is zero.
+                    issued = True
 
         if issued == False:           # Error handling if the input value doesn't match any of the book titles in ViewBooks list.
             popup("Book not found")
